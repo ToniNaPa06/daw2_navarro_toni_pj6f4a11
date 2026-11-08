@@ -1,6 +1,6 @@
 <?php
 /**
- * owner: Fernando Calizaya
+ * owner: Toni Navarro
  */
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     echo json_encode(["success" => false, "message" => "Method Not Allowed. Only POST requests are allowed."]);
