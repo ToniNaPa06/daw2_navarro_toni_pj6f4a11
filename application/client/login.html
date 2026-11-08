@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Jewelry Store</title>
+    <!-- Enllaç al full d'estils CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>System Login</h1>
+        
+        <!-- Formulari d'autenticació amb mètode POST cap a la part servidora -->
+        <form action="../server/authenticate.php" method="POST" id="loginForm">
+            <div style="margin-bottom: 15px; text-align: left;">
+                <label for="username">Username:</label><br>
+                <input type="text" id="username" name="username" style="width: 100%; padding: 8px; margin-top: 5px;" required>
+            </div>
+            
+            <div style="margin-bottom: 20px; text-align: left;">
+                <label for="password">Password:</label><br>
+                <input type="password" id="password" name="password" style="width: 100%; padding: 8px; margin-top: 5px;" required>
+            </div>
+
+            <!-- Botons d'accés i navegació -->
+            <div class="menu-buttons">
+                <button type="submit" class="btn btn-primary">Login to Operations</button>
+                <a href="index.html" class="btn">Back to Home</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
