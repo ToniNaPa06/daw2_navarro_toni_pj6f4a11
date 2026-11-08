@@ -1,28 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jewelry Store - Home</title>
-    <!-- Enlace a la hoja de estilos CSS que crearemos después -->
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Order Management System for Luxury Jewelry Store - Commercial Sales Portal">
+  <title>Home - Jewelry Order Management</title>
+  <link rel="shortcut icon" href="img/logo-jewelry.jpg" type="image/x-icon">
+  <link rel="stylesheet" href="css/styles.css?v=5">
 </head>
-<body>
-    <div class="container">
-        <!-- Logo y nombre de la aplicación -->
-        <header>
-            <h1>💎 Luxury Jewelry Order Management</h1>
-            <p>Welcome to the European jewelry store management system.</p>
-        </header>
+<body class="home-page">
+  <main class="container">
+    <div class="glass-card" id="home-card">
+      <img src="img/logo-jewelry.jpg" alt="Jewelry Store Logo" class="card-watermark-logo" id="app-logo">
 
-        <!-- Botones de navegación principales exigidos en el enunciado -->
-        <nav class="menu-buttons">
-            <!-- Botón de acceso a la descripción y documentación -->
-            <a href="documentation.html" class="btn">Documentation</a>
-            
-            <!-- Botón de acceso al menú de autenticación -->
-            <a href="login.html" class="btn btn-primary">Login</a>
-        </nav>
+      <div class="app-badge">Jewelry Commercial Portal</div>
+      
+      <h1 class="app-title" id="app-title">Joyeria Order Management</h1>
+      <p class="app-subtitle" id="app-subtitle">
+        Centralized management platform for luxury jewelry sales, custom pieces, and order tracking.
+      </p>
+
+      <nav class="button-group" aria-label="Main Navigation">
+        <a href="documentation.html" class="btn btn-secondary" id="btn-documentation">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          System Description & Documentation
+        </a>
+        <a href="login.html" class="btn btn-primary" id="btn-login">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+          </svg>
+          Access Authentication
+        </a>
+      </nav>
+
+      <footer class="app-footer">
+        <p>&copy; 2026-2027 Luxury Jewelry Network &bull; Secure HTTPS Connection</p>
+      </footer>
     </div>
+  </main>
 </body>
 </html>

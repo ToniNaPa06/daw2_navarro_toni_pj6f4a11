@@ -1,34 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Jewelry Store</title>
-    <!-- Enllaç al full d'estils CSS -->
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Commercial Agent Authentication - Jewelry Order Management System">
+  <title>Login - Jewelry Order Management</title>
+  <link rel="stylesheet" href="css/styles.css?v=8">
 </head>
-<body>
-    <div class="container">
-        <h1>System Login</h1>
-        
-        <!-- Formulari d'autenticació amb mètode POST cap a la part servidora -->
-        <form action="../server/authenticate.php" method="POST" id="loginForm">
-            <div style="margin-bottom: 15px; text-align: left;">
-                <label for="username">Username:</label><br>
-                <input type="text" id="username" name="username" style="width: 100%; padding: 8px; margin-top: 5px;" required>
-            </div>
-            
-            <div style="margin-bottom: 20px; text-align: left;">
-                <label for="password">Password:</label><br>
-                <input type="password" id="password" name="password" style="width: 100%; padding: 8px; margin-top: 5px;" required>
-            </div>
+<body class="split-layout-page">
+  <div class="split-container">
+    <section class="split-form-panel" aria-label="Login Form Section">
+      <div class="auth-box" id="login-card">
+        <header class="auth-header" style="text-align: left; margin-bottom: 2rem;">
+          <div class="app-badge">Jewelry Portal</div>
+          <h1 class="app-title" id="login-title">Sign In</h1>
+          <p class="app-subtitle" id="login-subtitle" style="margin-left: 0;">
+            Enter your credentials to access the jewelry operations menu.
+          </p>
+        </header>
 
-            <!-- Botons d'accés i navegació -->
-            <div class="menu-buttons">
-                <button type="submit" class="btn btn-primary">Login to Operations</button>
-                <a href="index.html" class="btn">Back to Home</a>
-            </div>
+        <div id="auth-error" class="alert alert-danger" role="alert" aria-live="polite"></div>
+
+        <form id="login-form" novalidate method="post">
+          <div class="form-group">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" id="username" name="username" class="form-input" placeholder="e.g. admin" required>
+          </div>
+
+          <div class="form-group">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" id="password" name="password" class="form-input" placeholder="Enter your password" required>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="btn-submit-login">
+              Access Operations Menu
+            </button>
+            <a href="index.html" class="btn btn-secondary" id="btn-back-home">
+              Back to Home
+            </a>
+          </div>
         </form>
-    </div>
+
+        <footer class="app-footer">
+          <p>&copy; 2026-2027 Luxury Jewelry Network &bull; Secure Authentication</p>
+        </footer>
+      </div>
+    </section>
+
+    <aside class="split-image-panel" aria-label="Visual Brand Panel">
+      <img src="img/jewelry-bg.jpg" alt="Luxury Jewelry Architecture" class="split-image">
+    </aside>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
 </body>
 </html>

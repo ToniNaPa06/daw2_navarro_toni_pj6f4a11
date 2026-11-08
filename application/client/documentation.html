@@ -1,23 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentation - Jewelry Store</title>
-    <!-- Enllaç al full d'estils CSS -->
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="System description and operations documentation for the Jewelry Order Management System">
+  <title>Documentation - Jewelry Order Management</title>
+  <link rel="stylesheet" href="css/styles.css?v=4">
 </head>
 <body>
-    <div class="container">
-        <!-- Descripció breu de l'aplicació exigida -->
-        <h1>Application Documentation</h1>
-        <p>This European e-commerce application manages jewelry orders placed by commercial agents. It separates client interfaces from server logic using secure PHP processing and JSON storage.</p>
+  <main class="container">
+    <article class="glass-card doc-card" id="documentation-card">
+      <div class="app-badge">Documentation &amp; User Guide</div>
+      
+      <h1 class="app-title" id="doc-title">System Documentation</h1>
+      <p class="app-subtitle" id="doc-subtitle">
+        Operational principles and guidelines for commercial agents managing luxury jewelry orders.
+      </p>
 
-        <div class="menu-buttons">
-            <!-- Botons de retorn i accés -->
-            <a href="index.html" class="btn">Back to Home</a>
-            <a href="login.html" class="btn btn-primary">Go to Login</a>
+      <section class="doc-section" aria-labelledby="section-overview">
+        <h2 id="section-overview">1. Application Overview</h2>
+        <p>
+          The Jewelry Order Management System provides a secure, centralized web portal designed for commercial sales representatives across our fine jewelry branches. It facilitates fast order entry for precious items, automated server-side tax calculations, and reliable order tracking.
+        </p>
+      </section>
+
+      <section class="doc-section" aria-labelledby="section-operations">
+        <h2 id="section-operations">2. Operations Guide</h2>
+        <p>
+          Once authenticated, commercial agents have access to the main operations menu, which offers two primary actions:
+        </p>
+
+        <div class="doc-item">
+          <h3>a) Create a New Order</h3>
+          <p>
+            Enables agents to register jewelry purchases. After entering customer contact details, agents select rings, necklaces, or luxury watches from the official catalog and specify quantities. The PHP backend computes the total price including 21% VAT and saves the transaction.
+          </p>
         </div>
-    </div>
+
+        <div class="doc-item">
+          <h3>b) View Orders</h3>
+          <p>
+            Provides access to consultation tools to inspect the complete registry of all store orders in a tabular overview or retrieve specific records using unique Order IDs.
+          </p>
+        </div>
+      </section>
+
+      <nav class="button-group" aria-label="Documentation Navigation">
+        <a href="login.html" class="btn btn-primary" id="btn-doc-login">
+          Access Authentication
+        </a>
+        <a href="index.html" class="btn btn-secondary" id="btn-doc-home">
+          Back to Home
+        </a>
+      </nav>
+
+      <footer class="app-footer">
+        <p>&copy; 2026-2027 Luxury Jewelry Network &bull; Commercial Guidelines</p>
+      </footer>
+    </article>
+  </main>
 </body>
 </html>
