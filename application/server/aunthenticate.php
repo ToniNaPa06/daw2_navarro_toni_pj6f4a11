@@ -33,8 +33,9 @@ $usuarios = json_decode($contenidoTexto, true);
 
 $usuarioEncontrado = null;
 foreach ($usuarios as $u) {
-    // Respetamos la clave 'user' que usa tu compañero
-    if (($u['user'] ?? $u['username'] ?? '') === $username) {
+    // Comprobamos tanto 'user' como 'username' por compatibilidad
+    $storedUser = $u['user'] ?? $u['username'] ?? '';
+    if ($storedUser === $username) {
         $usuarioEncontrado = $u;
         break;
     }
@@ -50,5 +51,4 @@ if (!password_verify($password, $usuarioEncontrado['password'])) {
     exit;
 }
 
-// Si todo es correcto, devolvemos éxito
 echo json_encode(["success" => true, "message" => "Authentication successful."]);

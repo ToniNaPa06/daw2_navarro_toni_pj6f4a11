@@ -1,87 +1,85 @@
 <?php
-// Comprovem que la petició vingui per POST
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $orderId = trim($_POST['order_id'] ?? '');
-    $clientName = trim($_POST['client_name'] ?? '');
-    $clientAddress = trim($_POST['client_address'] ?? '');
-    $clientEmail = trim($_POST['client_email'] ?? '');
-    $clientPhone = trim($_POST['client_phone'] ?? '');
-    $rawProducts = $_POST['products'] ?? [];
+require_once __DIR__ . '/functions.php';
 
-    $selectedProducts = [];
-    $subtotal = 0;
+$catalog = [
+    "BK-001" => ["name" => "Clean Code", "price" => 32.50],
+    "BK-002" => ["name" => "The Pragmatic Programmer", "price" => 39.90],
+    "BK-003" => ["name" => "Designing Data-Intensive Apps", "price" => 44.00],
+    "BK-004" => ["name" => "The Linux Command Line", "price" => 25.00]
+];
 
-    // Filtrem només els productes seleccionats mitjançant el checkbox
-    foreach ($rawProducts as $prod) {
-        if (isset($prod['selected']) && $prod['selected'] == '1') {
-            $name = $prod['name'];
-            $price = floatval($prod['price']);
-            $quantity = intval($prod['quantity']);
-            $totalItemPrice = $price * $quantity;
+if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+    echo json_encode(["success" => false, "message" => "Method Not Allowed. Only POST requests are allowed."]);
+    exit;
+}
 
-            $selectedProducts[] = [
-                "name" => $name,
-                "price" => $price,
-                "quantity" => $quantity,
-                "total" => $totalItemPrice
-            ];
+$orderId         = sanitize_input($_POST["order_id"] ?? "");
+$customerName    = sanitize_input($_POST["customer_name"] ?? "");
+$customerAddress = sanitize_input($_POST["customer_address"] ?? "");
+$customerEmail   = sanitize_input($_POST["customer_email"] ?? "");
+$customerPhone   = sanitize_input($_POST["customer_phone"] ?? "");
 
-            $subtotal += $totalItemPrice;
+$selectedProducts = $_POST["products"] ?? [];
+
+$subtotal = 0;
+$orderItems = [];
+
+foreach ($selectedProducts as $ref => $qty) {
+    $qty = (int)$qty;
+    if (isset($catalog[$ref]) && $qty > 0) {
+        $price = $catalog[$ref]["price"];
+        $itemTotal = $price * $qty;
+        $subtotal += $itemTotal;
+
+        $orderItems[] = [
+            "ref"        => $ref,
+            "name"       => $catalog[$ref]["name"],
+            "unit_price" => $price,
+            "quantity"   => $qty,
+            "subtotal"   => $itemTotal
+        ];
+    } else {
+        echo json_encode(["success" => false, "message" => "Could not process order."]);
+        exit;
+    }
+}
+
+$vatRate = 0.21;
+$vatAmount = $subtotal * $vatRate;
+$totalWithVat = $subtotal + $vatAmount;
+
+$newOrder = [
+    "order_id"         => $orderId,
+    "customer_name"    => $customerName,
+    "customer_address" => $customerAddress,
+    "customer_email"   => $customerEmail,
+    "customer_phone"   => $customerPhone,
+    "items"            => $orderItems,
+    "subtotal"         => $subtotal,
+    "vat_rate"         => 0.21,
+    "vat_amount"       => $vatAmount,
+    "total_with_vat"   => $totalWithVat
+];
+
+$ordersFile = __DIR__ . '/../../orders/orders.json';
+$allOrders = [];
+
+if (file_exists($ordersFile)) {
+    $fileData = file_get_contents($ordersFile);
+    $allOrders = json_decode($fileData, true) ?? [];
+    foreach ($allOrders as $orders) {
+        if ($orders['order_id'] === $orderId) {
+            echo json_encode(["success" => false, "message" => "This id order already exists."]);
+            exit;
         }
     }
-
-    // Càlcul de l'IVA (21%) exigit per la rúbrica
-    $vatRate = 0.21;
-    $vatAmount = $subtotal * $vatRate;
-    $totalWithVat = $subtotal + $vatAmount;
-
-    // Creem l'estructura de la comanda en format d'array associatiu multidimensional
-    $newOrder = [
-        "order_id" => $orderId,
-        "client_name" => $clientName,
-        "client_address" => $clientAddress,
-        "client_email" => $clientEmail,
-        "client_phone" => $clientPhone,
-        "products" => $selectedProducts,
-        "subtotal" => $subtotal,
-        "vat" => $vatAmount,
-        "total_with_vat" => $totalWithVat
-    ];
-
-    // Ruta cap a la carpeta orders i el fitxer orders.json
-    $ordersDir = '../../orders';
-    $ordersFile = $ordersDir . '/orders.json';
-
-    // Comprovem si existeix la carpeta orders, sinó la creem
-    if (!file_exists($ordersDir)) {
-        mkdir($ordersDir, 0777, true);
-    }
-
-    // Carreguem les comandes existents o creem un array buit
-    $ordersList = [];
-    if (file_exists($ordersFile)) {
-        $jsonContent = file_get_contents($ordersFile);
-        $ordersList = json_decode($jsonContent, true) ?? [];
-    }
-
-    // Afegim la nova comanda a la llista
-    $ordersList[] = $newOrder;
-
-    // Guardem de nou al fitxer orders.json en format JSON
-    if (file_put_contents($ordersFile, json_encode($ordersList, JSON_PRETTY_PRINT))) {
-        // Resposta neta amb només el resultat exigit per la part servidora
-        echo "<h1>Order Successfully Created!</h1>";
-        echo "<p>Order ID: $orderId</p>";
-        echo "<p>Total Price (with 21% VAT): <strong>" . number_format($totalWithVat, 2) . " €</strong></p>";
-        echo "<br><a href='../client/operations.html'>Back to Operations</a>";
-    } else {
-        // Control d'errors si no es pot obrir o desar el fitxer (Rúbrica de control d'errors)
-        http_response_code(404);
-        echo "<h1>Error 404: Cannot write or open orders.json file.</h1>";
-        echo "<br><a href='../client/operations.html'>Back to Operations</a>";
-    }
-} else {
-    header("Location: ../client/create_order.html");
-    exit();
 }
-?>
+
+$allOrders[] = $newOrder;
+$saved = @file_put_contents($ordersFile, json_encode($allOrders, JSON_PRETTY_PRINT));
+
+if ($saved === false) {
+    render_error_page(404, 'File Error', 'Error 404', 'Could not find or open the orders data file.');
+}
+
+echo json_encode(["success" => true, "total_with_vat" => number_format($totalWithVat, 2), "message" => "Order processed successfully.", "new_order" => $newOrder]);
