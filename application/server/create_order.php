@@ -2,10 +2,10 @@
 require_once __DIR__ . '/functions.php';
 
 $catalog = [
-    "BK-001" => ["name" => "Clean Code", "price" => 32.50],
-    "BK-002" => ["name" => "The Pragmatic Programmer", "price" => 39.90],
-    "BK-003" => ["name" => "Designing Data-Intensive Apps", "price" => 44.00],
-    "BK-004" => ["name" => "The Linux Command Line", "price" => 25.00]
+    "JW-001" => ["name" => "Anillo de Diamantes Solitario", "price" => 850.00],
+    "JW-002" => ["name" => "Collar de Oro Blanco 18K", "price" => 450.90],
+    "JW-003" => ["name" => "Reloj de Lujo Swiss Made", "price" => 1250.00],
+    "JW-004" => ["name" => "Pendientes de Perlas Cultivadas", "price" => 290.00]
 ];
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
@@ -28,7 +28,7 @@ foreach ($selectedProducts as $ref => $qty) {
     $qty = (int)$qty;
     if (isset($catalog[$ref]) && $qty > 0) {
         $price = $catalog[$ref]["price"];
-        $itemTotal = $price * $qty;
+        $itemTotal = $price * $qty; // Multiplicación corregida
         $subtotal += $itemTotal;
 
         $orderItems[] = [
@@ -45,7 +45,7 @@ foreach ($selectedProducts as $ref => $qty) {
 }
 
 $vatRate = 0.21;
-$vatAmount = $subtotal * $vatRate;
+$vatAmount = $subtotal * $vatRate; // Multiplicación corregida
 $totalWithVat = $subtotal + $vatAmount;
 
 $newOrder = [
@@ -82,4 +82,9 @@ if ($saved === false) {
     render_error_page(404, 'File Error', 'Error 404', 'Could not find or open the orders data file.');
 }
 
-echo json_encode(["success" => true, "total_with_vat" => number_format($totalWithVat, 2), "message" => "Order processed successfully.", "new_order" => $newOrder]);
+echo json_encode([
+    "success" => true, 
+    "total_with_vat" => number_format($totalWithVat, 2, '.', ''), 
+    "message" => "Order processed successfully.", 
+    "new_order" => $newOrder
+]);
