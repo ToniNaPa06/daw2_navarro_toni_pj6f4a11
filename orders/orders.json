@@ -1,0 +1,29 @@
+[
+    {
+        "order_id": "111",
+        "customer_name": "Toni Navarro Palacios",
+        "customer_address": "Meridiana 182, Barcelona",
+        "customer_email": "neustoni22@gmail.com",
+        "customer_phone": "663339692",
+        "items": [
+            {
+                "ref": "JW-001",
+                "name": "Anillo de Diamantes Solitario",
+                "unit_price": 850,
+                "quantity": 1,
+                "subtotal": 850
+            },
+            {
+                "ref": "JW-004",
+                "name": "Pendientes de Perlas Cultivadas",
+                "unit_price": 290,
+                "quantity": 1,
+                "subtotal": 290
+            }
+        ],
+        "subtotal": 1140,
+        "vat_rate": 0.21,
+        "vat_amount": 239.39999999999998,
+        "total_with_vat": 1379.4
+    }
+]
