@@ -35,9 +35,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Imagen de fondo aplicada correctamente para la página de inicio */
 body.home-page {
   background: 
-    linear-gradient(rgba(43, 43, 43, 0.85), rgba(204, 204, 204, 0.85)),
+    linear-gradient(rgba(43, 43, 43, 0.75), rgba(43, 43, 43, 0.75)),
     url('../img/fondo-joyeria.png') center/cover no-repeat fixed;
 }
 
@@ -64,29 +65,6 @@ body.home-page {
   position: relative;
   overflow: hidden;
   animation: softFadeIn 0.7s ease-out forwards;
-}
-
-.glass-card > *:not(.card-watermark-logo) {
-  position: relative;
-  z-index: 1;
-}
-
-.card-watermark-logo {
-  position: absolute;
-  right: -115px;
-  bottom: -115px;
-  width: 450px;
-  height: 450px;
-  opacity: 0.11;
-  mix-blend-mode: multiply;
-  pointer-events: none;
-  z-index: 0;
-  user-select: none;
-  transition: opacity 0.3s ease;
-}
-
-.glass-card:hover .card-watermark-logo {
-  opacity: 0.15;
 }
 
 .app-badge {
