@@ -82,7 +82,7 @@ http_response_code(200);
       </nav>
 
       <footer class="app-footer" style="margin-top: 1.5rem;">
-        <p>&copy; 2026-2027 European Bookstore Network &bull; Official Registry</p>
+        <p>&copy; 2026-2027 Luxury Jewelry Network • Order Consultation 
       </footer>
     </div>
   </main>
