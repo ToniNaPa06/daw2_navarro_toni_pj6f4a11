@@ -1,70 +1,234 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Creación de nuevo pedido - Joyería">
-  <title>Nuevo Pedido - Gestión de Pedidos</title>
+  <meta name="description" content="Create New Jewelry Order - Luxury Commercial Sales Portal">
+  <title>New Order - Jewelry Order Management</title>
   <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
-  <link rel="stylesheet" href="css/styles.css?v=6">
+  <link rel="stylesheet" href="css/styles.css?v=9">
 </head>
-<body>
+<body class="home-page">
   <main class="container container-wide">
-    <div class="glass-card order-card">
+    <div class="glass-card order-card" id="new-order-card">
       <header>
-        <div class="app-badge">Nuevo Pedido</div>
-        <h1 class="app-title" style="font-size: 1.8rem; margin-bottom: 0.4rem;">Registrar Orden de Venta</h1>
-        <p class="app-subtitle" style="margin-bottom: 1.5rem;">
-          Selecciona el cliente y los productos requeridos para calcular el pedido.
+        <div class="app-badge">Order Management</div>
+        <h1 class="app-title" id="order-title">Create New Jewelry Order</h1>
+        <p class="app-subtitle" id="order-subtitle" style="margin-bottom: 1rem;">
+          Enter customer information and select jewelry quantities to calculate order total with 21% VAT.
         </p>
       </header>
 
       <div id="order-alert" class="alert alert-danger" role="alert" aria-live="polite"></div>
 
-      <form id="order-form">
+      <form id="order-form" novalidate>
         <div class="order-grid">
-          
-          <!-- Columna Izquierda: Datos del cliente -->
-          <div class="order-col">
-            <span class="order-section-title">Información del Cliente</span>
-            <div class="form-group">
-              <label for="client-name" class="form-label">Nombre Cliente</label>
-              <input type="text" id="client-name" name="client_name" class="form-input" placeholder="Nombre completo" required>
+          <!-- Left Column: Customer Information -->
+          <div class="order-col" aria-label="Customer Information">
+            <span class="order-section-title">1. Customer Details</span>
+
+            <div class="form-group-compact">
+              <label for="order-id" class="form-label">Order Identifier (ID)</label>
+              <input 
+                type="text" 
+                id="order-id" 
+                name="order_id" 
+                class="form-input" 
+                placeholder="e.g. 111" 
+                required
+              >
             </div>
-            <div class="form-group">
-              <label for="client-email" class="form-label">Correo Electrónico</label>
-              <input type="email" id="client-email" name="client_email" class="form-input" placeholder="cliente@email.com" required>
+
+            <div class="form-group-compact">
+              <label for="customer-name" class="form-label">Customer Full Name</label>
+              <input 
+                type="text" 
+                id="customer-name" 
+                name="customer_name" 
+                class="form-input" 
+                placeholder="e.g. Elena García Ruiz" 
+                required
+              >
+            </div>
+
+            <div class="form-group-compact">
+              <label for="customer-address" class="form-label">Physical Address</label>
+              <input 
+                type="text" 
+                id="customer-address" 
+                name="customer_address" 
+                class="form-input" 
+                placeholder="e.g. Paseo de Gracia 45, Barcelona" 
+                required
+              >
+            </div>
+
+            <div class="form-group-compact">
+              <label for="customer-email" class="form-label">Email Address</label>
+              <input 
+                type="email" 
+                id="customer-email" 
+                name="customer_email" 
+                class="form-input" 
+                placeholder="e.g. elena.garcia@example.com" 
+                required
+              >
+            </div>
+
+            <div class="form-group-compact">
+              <label for="customer-phone" class="form-label">Phone Number</label>
+              <input 
+                type="tel" 
+                id="customer-phone" 
+                name="customer_phone" 
+                class="form-input" 
+                placeholder="e.g. 669898366" 
+                required
+              >
             </div>
           </div>
 
-          <!-- Columna Derecha: Selección de productos -->
-          <div class="order-col">
-            <span class="order-section-title">Productos Disponibles</span>
-            <div id="products-list" style="display: flex; flex-direction: column; gap: 0.75rem;">
-              <!-- Los productos se cargarán dinámicamente mediante JS -->
+          <!-- Right Column: Jewelry Catalog -->
+          <div class="order-col" aria-label="Jewelry Catalog">
+            <span class="order-section-title">2. Jewelry Catalog &amp; Quantities</span>
+
+            <!-- Product 1 -->
+            <div class="product-item">
+              <label class="product-select-wrap" for="check-prod-1">
+                <input type="checkbox" id="check-prod-1" class="product-checkbox" data-target="qty-prod-1">
+                <div class="product-info">
+                  <span class="product-name">Anillo de Diamantes Solitario</span>
+                  <span class="product-price">850.00 € (Ref: JW-001)</span>
+                </div>
+              </label>
+              <div class="product-qty-wrap">
+                <label for="qty-prod-1" class="product-qty-label">Qty:</label>
+                <input 
+                  type="number" 
+                  id="qty-prod-1" 
+                  name="products[JW-001]" 
+                  class="product-qty-input" 
+                  min="1" 
+                  max="50"
+                  value="1" 
+                  disabled
+                >
+              </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-item">
+              <label class="product-select-wrap" for="check-prod-2">
+                <input type="checkbox" id="check-prod-2" class="product-checkbox" data-target="qty-prod-2">
+                <div class="product-info">
+                  <span class="product-name">Collar de Oro Blanco 18K</span>
+                  <span class="product-price">450.90 € (Ref: JW-002)</span>
+                </div>
+              </label>
+              <div class="product-qty-wrap">
+                <label for="qty-prod-2" class="product-qty-label">Qty:</label>
+                <input 
+                  type="number" 
+                  id="qty-prod-2" 
+                  name="products[JW-002]" 
+                  class="product-qty-input" 
+                  min="1" 
+                  max="50"
+                  value="1" 
+                  disabled
+                >
+              </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-item">
+              <label class="product-select-wrap" for="check-prod-3">
+                <input type="checkbox" id="check-prod-3" class="product-checkbox" data-target="qty-prod-3">
+                <div class="product-info">
+                  <span class="product-name">Reloj de Lujo Swiss Made</span>
+                  <span class="product-price">1250.00 € (Ref: JW-003)</span>
+                </div>
+              </label>
+              <div class="product-qty-wrap">
+                <label for="qty-prod-3" class="product-qty-label">Qty:</label>
+                <input 
+                  type="number" 
+                  id="qty-prod-3" 
+                  name="products[JW-003]" 
+                  class="product-qty-input" 
+                  min="1" 
+                  max="50"
+                  value="1" 
+                  disabled
+                >
+              </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-item">
+              <label class="product-select-wrap" for="check-prod-4">
+                <input type="checkbox" id="check-prod-4" class="product-checkbox" data-target="qty-prod-4">
+                <div class="product-info">
+                  <span class="product-name">Pendientes de Perlas Cultivadas</span>
+                  <span class="product-price">290.00 € (Ref: JW-004)</span>
+                </div>
+              </label>
+              <div class="product-qty-wrap">
+                <label for="qty-prod-4" class="product-qty-label">Qty:</label>
+                <input 
+                  type="number" 
+                  id="qty-prod-4" 
+                  name="products[JW-004]" 
+                  class="product-qty-input" 
+                  min="1" 
+                  max="50"
+                  value="1" 
+                  disabled
+                >
+              </div>
             </div>
           </div>
-
         </div>
 
-        <div id="order-result-box" class="order-result-box">
-          <div class="order-result-title">Total Calculado</div>
-          <div id="order-total-amount" class="order-result-amount">0.00 €</div>
+        <!-- Result Box -->
+        <div id="order-result-box" class="order-result-box" aria-live="polite">
+          <div class="order-result-title">Order Confirmed &amp; Calculated (PHP)</div>
+          <div class="order-result-amount" id="order-total-price">-- €</div>
+          <div class="order-result-desc" id="order-result-desc">Total amount including 21% VAT calculated by server.</div>
         </div>
 
-        <div class="order-actions-nav">
-          <a href="operations.html" class="btn btn-secondary">Volver al Menú</a>
-          <button type="submit" class="btn btn-primary" id="btn-save-order">Guardar Pedido</button>
-        </div>
+        <!-- Action Navigation Buttons -->
+        <nav class="order-actions-nav" aria-label="Order Actions Navigation">
+          <button type="submit" class="btn btn-primary" id="btn-submit-order">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            Submit Order
+          </button>
+
+          <a href="operations.html" class="btn btn-secondary" id="btn-back-operations">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h7" />
+            </svg>
+            Back to Operations
+          </a>
+
+          <a href="index.html" class="btn btn-secondary" id="btn-back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            Back to Home
+          </a>
+        </nav>
       </form>
 
-      <footer class="app-footer">
-        <p>&copy; 2026-2027 Luxury Jewelry Network &bull; Registro Comercial</p>
+      <footer class="app-footer" style="margin-top: 1.5rem;">
+        <p>&copy; 2026-2027 Luxury Jewelry Network &bull; Commercial Order Entry</p>
       </footer>
     </div>
   </main>
 
   <script src="js/main.js"></script>
-  <script src="js/orders.js"></script>
+  <script src="js/order.js"></script>
 </body>
 </html>

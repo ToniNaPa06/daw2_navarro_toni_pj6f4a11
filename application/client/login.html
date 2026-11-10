@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Autenticación de Acceso - Tienda de Joyería">
-  <title>Iniciar Sesión - Gestión de Pedidos</title>
+  <meta name="description" content="Access Authentication - Luxury Jewelry Store">
+  <title>Sign In - Jewelry Order Management</title>
   <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
-  <link rel="stylesheet" href="css/styles.css?v=6">
+  <link rel="stylesheet" href="css/styles.css?v=9">
 </head>
 <body class="split-layout-page">
   <div class="split-container">
     
-    <!-- Panel Izquierdo: Formulario de Login -->
+    <!-- Left Panel: Login Form -->
     <div class="split-form-panel">
       <div class="auth-box">
         <header style="margin-bottom: 2rem;">
-          <div class="app-badge">Portal Joyería</div>
-          <h1 class="app-title" style="font-size: 2.2rem; margin-bottom: 0.5rem;">Iniciar Sesión</h1>
+          <div class="app-badge">Jewelry Portal</div>
+          <h1 class="app-title" style="font-size: 2.2rem; margin-bottom: 0.5rem;">Sign In</h1>
           <p class="app-subtitle" style="text-align: left; margin-bottom: 0; max-width: 100%;">
-            Introduce tus credenciales para acceder al menú operativo.
+            Enter your credentials to access the jewelry operations menu.
           </p>
         </header>
 
@@ -26,26 +26,26 @@
 
         <form id="login-form" novalidate>
           <div class="form-group">
-            <label for="username" class="form-label">Usuario</label>
+            <label for="username" class="form-label">Username</label>
             <input 
               type="text" 
               id="username" 
               name="username" 
               class="form-input" 
-              placeholder="Ej. admin" 
+              placeholder="e.g. admin" 
               required 
               autocomplete="username"
             >
           </div>
 
           <div class="form-group" style="margin-bottom: 1.5rem;">
-            <label for="password" class="form-label">Contraseña</label>
+            <label for="password" class="form-label">Password</label>
             <input 
               type="password" 
               id="password" 
               name="password" 
               class="form-input" 
-              placeholder="Introduce tu contraseña" 
+              placeholder="Enter your password" 
               required 
               autocomplete="current-password"
             >
@@ -53,24 +53,24 @@
 
           <div class="form-actions">
             <button type="submit" class="btn btn-primary" id="btn-submit-login">
-              Acceder al Menú
+              Access Operations Menu
             </button>
             <a href="index.html" class="btn btn-secondary">
-              Volver al Inicio
+              Back to Home
             </a>
           </div>
         </form>
 
         <footer class="app-footer" style="margin-top: 3rem; text-align: left;">
-          <p>&copy; 2026-2027 Luxury Jewelry Network &bull; Autenticación Segura</p>
+          <p>&copy; 2026-2027 Luxury Jewelry Network &bull; Secure Authentication</p>
         </footer>
       </div>
     </div>
 
-    <!-- Panel Derecho: Logo centrado -->
+    <!-- Right Panel: Diamond Logo -->
     <div class="split-image-panel">
-      <div class="split-image-panel-inner">
-        <img src="img/logo.png" alt="Logo Joyería" style="max-width: 260px; height: auto; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));">
+      <div class="split-image-panel-inner" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+        <img src="img/logo.png" alt="Luxury Jewelry Logo" style="max-width: 280px; height: auto; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));">
       </div>
     </div>
 

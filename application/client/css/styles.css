@@ -1,29 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
 :root {
-  /* Paleta Elegante Gold/Slate - Especial Joyería Premium */
-  --bg-primary: #0f172a;
-  --bg-surface: #1e293b;
-  --card-bg: rgba(30, 41, 59, 0.85);
+  --bg-primary: #0b0f17;
+  --bg-surface: #161e2e;
+  --card-bg: rgba(22, 30, 46, 0.85);
   
   --text-primary: #f8fafc;
   --text-secondary: #94a3b8;
   --text-muted: #64748b;
   
   --accent-gold: #d97706;
-  --accent-gold-light: #f59e0b;
-  --accent-gold-glow: rgba(217, 119, 6, 0.2);
+  --accent-gold-light: #fbbf24;
+  --accent-gold-glow: rgba(217, 119, 6, 0.25);
   
-  --btn-primary-bg: #d97706;
+  --btn-primary-bg: linear-gradient(135deg, #d97706 0%, #b45309 100%);
   --btn-primary-text: #ffffff;
-  --btn-primary-hover: #b45309;
+  --btn-primary-hover: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
   
-  --btn-secondary-bg: rgba(51, 65, 85, 0.6);
-  --btn-secondary-text: #f1f5f9;
-  --btn-secondary-hover: rgba(71, 85, 105, 0.8);
+  --btn-secondary-bg: rgba(255, 255, 255, 0.05);
+  --btn-secondary-text: #e2e8f0;
+  --btn-secondary-hover: rgba(255, 255, 255, 0.1);
   
-  --radius: 14px;
-  --shadow-main: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+  --radius: 16px;
+  --shadow-main: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
   --border-subtle: 1px solid rgba(255, 255, 255, 0.08);
   --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -45,18 +44,18 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Fondo principal con efecto de degradado de alta gama */
+/* Background for home-page */
 body.home-page {
   background: 
-    radial-gradient(circle at 50% 0%, rgba(217, 119, 6, 0.15), transparent 50%),
+    radial-gradient(circle at 50% 0%, rgba(217, 119, 6, 0.18), transparent 50%),
     radial-gradient(circle at 10% 90%, rgba(30, 41, 59, 0.8), transparent 40%),
-    linear-gradient(rgba(15, 23, 42, 0.88), rgba(15, 23, 42, 0.88)),
+    linear-gradient(rgba(11, 15, 23, 0.88), rgba(11, 15, 23, 0.88)),
     url('../img/fondo-joyeria.png') center/cover no-repeat fixed;
 }
 
 .container {
   width: 100%;
-  max-width: 640px;
+  max-width: 620px;
   margin: 0 auto;
   padding: 3rem 1.5rem;
   flex: 1;
@@ -73,7 +72,7 @@ body.home-page {
   border: var(--border-subtle);
   box-shadow: var(--shadow-main);
   border-radius: var(--radius);
-  padding: 3rem 2.5rem;
+  padding: 3.25rem 2.5rem;
   width: 100%;
   text-align: center;
   position: relative;
@@ -88,7 +87,7 @@ body.home-page {
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--accent-gold), #fbbf24, var(--accent-gold));
+  background: linear-gradient(90deg, #d97706, #fbbf24, #d97706);
 }
 
 .app-badge {
@@ -138,7 +137,7 @@ body.home-page {
   padding: 0.95rem 1.5rem;
   font-size: 0.92rem;
   font-weight: 600;
-  border-radius: calc(var(--radius) - 4px);
+  border-radius: calc(var(--radius) - 6px);
   cursor: pointer;
   text-decoration: none;
   transition: var(--transition);
@@ -156,7 +155,7 @@ body.home-page {
 .btn-primary:hover {
   background: var(--btn-primary-hover);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(217, 119, 6, 0.35);
+  box-shadow: 0 6px 20px rgba(217, 119, 6, 0.4);
 }
 
 .btn-secondary {
@@ -169,6 +168,7 @@ body.home-page {
   background: var(--btn-secondary-hover);
   color: #ffffff;
   transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .app-footer {
@@ -178,7 +178,7 @@ body.home-page {
   text-align: center;
 }
 
-/* Documentación */
+/* Documentation styles */
 .doc-card { text-align: left; }
 .doc-section { margin-bottom: 2rem; }
 .doc-section h2 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.6rem; color: #ffffff; }
@@ -193,7 +193,7 @@ body.home-page {
 .doc-item h3 { font-size: 0.98rem; font-weight: 600; margin-bottom: 0.35rem; color: var(--accent-gold-light); }
 .doc-item p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5; }
 
-/* Formularios y Alertas */
+/* Forms & Alerts */
 .form-group { margin-bottom: 1.25rem; display: flex; flex-direction: column; gap: 0.45rem; text-align: left; }
 .form-label { font-size: 0.86rem; font-weight: 600; color: var(--text-secondary); }
 .form-input { 
@@ -201,9 +201,9 @@ body.home-page {
   padding: 0.85rem 1rem; 
   font-size: 0.95rem; 
   font-family: inherit; 
-  border-radius: calc(var(--radius) - 4px); 
+  border-radius: calc(var(--radius) - 6px); 
   border: 1px solid rgba(255, 255, 255, 0.12); 
-  background-color: rgba(15, 23, 42, 0.6); 
+  background-color: rgba(11, 15, 23, 0.6); 
   color: #ffffff; 
   transition: var(--transition); 
   outline: none; 
@@ -216,7 +216,7 @@ body.home-page {
 
 .alert { 
   padding: 0.9rem 1.1rem; 
-  border-radius: calc(var(--radius) - 4px); 
+  border-radius: calc(var(--radius) - 6px); 
   font-size: 0.88rem; 
   font-weight: 500; 
   margin-bottom: 1.25rem; 
@@ -226,7 +226,75 @@ body.home-page {
 .alert-danger { background-color: rgba(239, 68, 68, 0.15); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.3); }
 .alert-success { background-color: rgba(34, 197, 94, 0.15); color: #86efac; border: 1px solid rgba(34, 197, 94, 0.3); }
 
-/* Vista Ordenes / Formularios de creación */
+/* Operations Page Options */
+.operations-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.operation-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  border-radius: calc(var(--radius) - 4px);
+  background-color: var(--bg-surface);
+  border: var(--border-subtle);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.operation-option:hover {
+  border-color: rgba(217, 119, 6, 0.5);
+  background-color: rgba(30, 41, 59, 0.8);
+  transform: translateY(-2px);
+}
+
+.operation-option input[type="radio"] {
+  accent-color: var(--accent-gold);
+  width: 20px;
+  height: 20px;
+  margin-top: 0.2rem;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.operation-option-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.operation-option-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.operation-option-desc {
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.operation-option input[type="radio"]:checked + .operation-option-text .operation-option-title {
+  color: var(--accent-gold-light);
+}
+
+.button-group-op {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+
+.button-group-op .btn {
+  flex: 1;
+}
+
+/* Order Creation layout */
 .container-wide { max-width: 1060px; padding: 2.5rem 1.5rem; }
 .order-card { padding: 2.5rem 3rem; max-width: 100%; }
 .order-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 2.5rem; margin: 1.5rem 0; text-align: left; }
@@ -284,7 +352,7 @@ body.home-page {
 .order-actions-nav { display: flex; gap: 0.85rem; width: 100%; margin-top: 1.5rem; }
 .order-actions-nav .btn { flex: 1; padding: 0.85rem 1rem; font-size: 0.88rem; }
 
-/* Tablas */
+/* Table styles */
 .table-wrapper { 
   width: 100%; 
   overflow-x: auto; 
@@ -298,21 +366,19 @@ body.home-page {
 .orders-table td { padding: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05); color: var(--text-primary); vertical-align: top; }
 .badge-item { display: inline-block; padding: 0.25rem 0.6rem; background-color: rgba(217, 119, 6, 0.15); color: var(--accent-gold-light); border-radius: 6px; font-size: 0.78rem; font-weight: 600; margin: 0.15rem 0; }
 
-/* Vista dividida (Split Screen) */
+/* Split Layout (Login) */
 body.split-layout-page { background-color: var(--bg-primary); min-height: 100vh; margin: 0; padding: 0; display: flex; }
 .split-container { display: flex; width: 100vw; min-height: 100vh; }
 .split-form-panel { flex: 1; display: flex; align-items: center; justify-content: center; padding: 3rem 4rem; background-color: var(--bg-primary); }
 .split-form-panel .auth-box { width: 100%; max-width: 420px; animation: softFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-.split-image-panel { flex: 1; padding: 1.5rem; display: flex; animation: softFadeIn 0.9s ease-out forwards; }
-.split-image-panel-inner { 
-  width: 100%; 
-  height: 100%; 
-  background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95)); 
-  border-radius: 24px; 
+.split-image-panel { 
+  flex: 1; 
+  padding: 1.5rem; 
   display: flex; 
   align-items: center; 
   justify-content: center; 
-  border: var(--border-subtle);
+  background: linear-gradient(135deg, rgba(22, 30, 46, 0.9), rgba(11, 15, 23, 0.95)); 
+  border-left: var(--border-subtle);
 }
 
 @media (max-width: 900px) {
@@ -320,6 +386,7 @@ body.split-layout-page { background-color: var(--bg-primary); min-height: 100vh;
   .split-form-panel { padding: 2.5rem 1.5rem; }
   .order-grid { grid-template-columns: 1fr; }
   .order-actions-nav { flex-direction: column; }
+  .button-group-op { flex-direction: column; }
 }
 
 @keyframes softFadeIn {
